@@ -5,7 +5,7 @@ import numpy as np
 df = pd.read_csv('crop_recommendation_orig.csv')
 
 # Define the function to augment data
-def augment_data(subset, n_times, noise_scale=0.10):
+def augment_data(subset, n_times, noise_scale=0.1): # 10% noise scale
     augmented_list = [subset]
 
     for _ in range(n_times-1):
@@ -25,7 +25,7 @@ def augment_data(subset, n_times, noise_scale=0.10):
 
     return pd.concat(augmented_list)
 
-# Unique labels in the dataset
+# Unique labels in the dataset (excluding 'jute' which was removed)
 labels = df['label'].unique()
 
 # List to hold augmented data subsets
@@ -34,7 +34,7 @@ augmented_data_list = []
 # Loop through labels and apply augmentation
 for label in labels:
     subset = df[df['label'] == label]
-    augmented_subset = augment_data(subset, 20)
+    augmented_subset = augment_data(subset, 50)
     augmented_data_list.append(augmented_subset)
 
 # Concatenate all augmented subsets
@@ -42,3 +42,4 @@ augmented_df = pd.concat(augmented_data_list)
 
 # Save augmented dataframe to a new csv
 augmented_df.to_csv('augmented_file.csv', index=False)
+
