@@ -1,3 +1,8 @@
+# Use this file to augment the original data
+# The original data only includes 100 entries per label
+# You may add noise by update the noise_scale value
+# You may also add data through data augmentation by revising the number on the augmented_subset
+
 import pandas as pd
 import numpy as np
 
@@ -5,7 +10,7 @@ import numpy as np
 df = pd.read_csv('crop_recommendation_orig.csv')
 
 # Define the function to augment data
-def augment_data(subset, n_times, noise_scale=0.1): # 10% noise scale
+def augment_data(subset, n_times, noise_scale=0.05): # 5% noise scale
     augmented_list = [subset]
 
     for _ in range(n_times-1):
@@ -25,7 +30,7 @@ def augment_data(subset, n_times, noise_scale=0.1): # 10% noise scale
 
     return pd.concat(augmented_list)
 
-# Unique labels in the dataset (excluding 'jute' which was removed)
+# Unique labels in the dataset
 labels = df['label'].unique()
 
 # List to hold augmented data subsets
