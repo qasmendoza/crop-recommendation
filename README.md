@@ -36,18 +36,19 @@ A POC (Proof of Concept) project that utilizes Machine Learning and Data Science
 # Making Predictions 🔮🧙🏽✨
 - The code will ask for entries: N, P, K, Temperature (C), Humidity, Ph, and Rainfall.
 - The model will use ensemble prediction and voting.
---------------------------------------------------
-              ENSEMBLE PREDICTION RESULT      
---------------------------------------------------
+  
 
-| Metric           | Value                      |
-|------------------|-----------------------------|
-| Crop Predicted   | banana                      |
-| Accuracy         | 0.9488181818181818          |
-| Precision        | 0.9709480524545341          |
-| Recall           | 0.9488181818181818          |
-| F1 Score         | 0.9425078286963159          |
---------------------------------------------------
+<br>
+ENSEMBLE PREDICTION RESULT      
+
+| Metric           | Value           |
+|------------------|-----------------|
+| Crop Predicted   | Banana          |
+| Accuracy         | 0.9488          |
+| Precision        | 0.9709          |
+| Recall           | 0.9488          |
+| F1 Score         | 0.9425          |
+--------------------------------------
 
 
 
