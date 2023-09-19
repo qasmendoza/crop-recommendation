@@ -9,9 +9,10 @@ A POC (Proof of Concept) project that utilizes Machine Learning and Data Science
 # Procedure 📖📖
 
 - The original dataset is from [Kaggle](https://www.kaggle.com/code/atharvaingle/what-crop-to-grow/input). This dataset only consists of 100 entries per crop.
-- I created a Python file entitled [data.py](https://github.com/qasmendoza/crop-recommendation/blob/main/Data.py) to augment the orignal dataset. The augmentation steps include introducing 10% noise data and mutiplying the dataset by 50x per crop.
+- I created a Python file entitled [data.py](https://github.com/qasmendoza/crop-recommendation/blob/main/Data.py) to augment the orignal dataset.
+- The augmentation steps include introducing 10% noise data and mutiplying the dataset by 50x per crop.
 - The file [Crops.ipynb](https://github.com/qasmendoza/crop-recommendation/blob/main/Crops.ipynb) was created for the following steps:
-  -  I used the augmented dataset for data analysis and visualization.
+  -  I used the augmented dataset for data analysis and visualization
   -  Feature Engineering
   -  Data Splitting
   -  Modeling
@@ -49,6 +50,12 @@ ENSEMBLE PREDICTION RESULT
 | Recall           | 0.9488          |
 | F1 Score         | 0.9425          |
 --------------------------------------
+
+# Future Work 🧿🪄🧪
+
+- I will use the [yield.csv](https://github.com/qasmendoza/crop-recommendation/blob/main/yield.csv) to predict the yield of crops based on the recommendation of the model.
+- The dataset is also from [Kaggle](https://www.kaggle.com/datasets/patelris/crop-yield-prediction-dataset).
+- Build a Front-end and Back-end stand-alone API. 
 
 
 
