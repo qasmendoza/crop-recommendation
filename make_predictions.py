@@ -1,12 +1,10 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from collections import Counter
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
-# Ensemble Prediction Function
 def ensemble_predict(classifiers, data_df, le=None):
-    # Convert data_df to 2D if it's 1D
+    """Function to get ensemble prediction."""
     if len(data_df.shape) == 1:
         data_df = data_df.values.reshape(1, -1)
     else:
@@ -32,8 +30,8 @@ def ensemble_predict(classifiers, data_df, le=None):
     else:
         return most_common_votes[0][0]
 
-# Ensemble Metrics Calculation
 def calculate_ensemble_metrics(classifiers, X_test, y_test, le=None):
+    """Function to calculate ensemble metrics."""
     y_preds = [ensemble_predict(classifiers, pd.Series(row), le) for row in X_test.values]
     metrics = {
         'Accuracy': accuracy_score(y_test, y_preds),
@@ -44,6 +42,7 @@ def calculate_ensemble_metrics(classifiers, X_test, y_test, le=None):
     return metrics
 
 def predict_crop_value(N, P, K, temperature, humidity, ph, rainfall, classifiers, le, X_test, y_test):
+    """Function to predict crop value and collect metrics."""
     try:
         original_feature_names = ['N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall']
         data = [[N, P, K, temperature, humidity, ph, rainfall]]
@@ -55,57 +54,19 @@ def predict_crop_value(N, P, K, temperature, humidity, ph, rainfall, classifiers
         # Getting metrics using the function
         ensemble_metrics = calculate_ensemble_metrics(classifiers, X_test, y_test, le)
 
-        # Tabular Representation of Model-wise Predictions
-        print("Model-wise Predictions:")
-        print("| Model Name            | Prediction   |")
-        print("|-----------------------|--------------|")
-
-        votes = []  # List to collect individual model predictions
-
+        # Collecting model-wise predictions for display
+        model_predictions = {}
         for clf_name, clf in classifiers.items():
             proba = clf.predict_proba(data_df.values)
             predicted_index = np.argmax(proba)
-    
             if clf_name == "XGBoost" and le:
                 predicted_label = le.inverse_transform([predicted_index])[0]
             else:
                 predicted_label = clf.classes_[predicted_index]
-            print(f"| {clf_name:<21} | {predicted_label:<12} |")
-    
-            votes.append(predicted_label)  # Add the model's prediction to the votes list
+            model_predictions[clf_name] = predicted_label
 
-        # Visualization: Histogram of Predictions
-        vote_counts = Counter(votes)
-        plt.figure(figsize=(10,6))
-        colors = ['blue', 'green', 'red', 'cyan', 'purple']
-        plt.bar(vote_counts.keys(), vote_counts.values(), color=colors, alpha=0.75)
-        plt.yticks(np.arange(0, 6, 1))
-        plt.ylim(0, 5)
-        plt.ylabel('Number of Models Voting', fontsize=12)
-        plt.xlabel('Crops', fontsize=12)
-        plt.title('Number of Model Votes for Each Predicted Crop', fontsize=14)
-        plt.xticks(rotation=0, fontsize=11)
-        plt.grid(axis='y', linestyle='--', alpha=0.7)
-        plt.margins(0.1)
-        plt.tight_layout()
-        plt.show()
-
-        # Tabular Representation of Ensemble Prediction Results
-        print("\n--------------------------------------------------")
-        print("              ENSEMBLE PREDICTION RESULT      ")
-        print("--------------------------------------------------")
-        print(f"| Crop Predicted   | {ensemble_prediction:<27} |")
-        print("|------------------|-----------------------------|")
-        print(f"| Accuracy         | {ensemble_metrics['Accuracy']:<27} |")
-        print(f"| Precision        | {ensemble_metrics['Precision']:<27} |")
-        print(f"| Recall           | {ensemble_metrics['Recall']:<27} |")
-        print(f"| F1 Score         | {ensemble_metrics['F1 Score']:<27} |")
-        print("--------------------------------------------------")
-        print("\nNote:")
-        print("The ensemble prediction is derived from a majority consensus across various models.")
+        return ensemble_prediction, ensemble_metrics, model_predictions
 
     except Exception as e:
         print(f"An error occurred: {e}")
-        return None
-
-    return ensemble_prediction
+        return None, None, None
