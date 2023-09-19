@@ -1,5 +1,13 @@
+# Crop Recommendation Project 🌾🌽🥔🍇🍌🍎 
 
-<h1 align="Left">Crop Recommendation Project 🌾 🌽 🥔 </h1>
 A POC (Proof of Concept) project that utilizes Machine Learning and Data Science to advise on the ideal crops to plant, the right fertilizers to employ, and to detect diseases that might afflict your crops.
-<h1 align="Left">⚠️🛑 Disclaimer! 🛑⚠️</h1>
-The data offered in this context comes without assurances from its author. This project is a proof of concept only. It is not advised to base farming decisions on it. The author will not be held accountable for consequences arising from its use. Still, this project showcases how Machine Learning and Data Science can effectively apply to precision farming when grounded in comprehensive and validated data.
+
+# ⚠️🛑 Disclaimer! 🛑⚠️
+
+**This project is a proof of concept only**. The data offered in this context comes without assurances from its author. It is not advised to base farming decisions on it. The author will not be held accountable for consequences arising from its use. Still, this project showcases how Machine Learning and Data Science can effectively apply to precision farming when grounded in comprehensive and validated data.
+
+# Procedure 📖📖
+
+- The original dataset is from [Kaggle](https://www.kaggle.com/code/atharvaingle/what-crop-to-grow/input). This dataset only consists of 100 entries per crop.
+- I created a Python file entitled data.py to augment the orignal dataset. The augmentation steps include introducing 10% noise data and mutiplying the dataset by 50x per crop.
+
