@@ -9,5 +9,5 @@ A POC (Proof of Concept) project that utilizes Machine Learning and Data Science
 # Procedure 📖📖
 
 - The original dataset is from [Kaggle](https://www.kaggle.com/code/atharvaingle/what-crop-to-grow/input). This dataset only consists of 100 entries per crop.
-- I created a Python file entitled data.py to augment the orignal dataset. The augmentation steps include introducing 10% noise data and mutiplying the dataset by 50x per crop.
+- I created a Python file entitled [data.py](https://github.com/qasmendoza/crop-recommendation/blob/main/Data.py) to augment the orignal dataset. The augmentation steps include introducing 10% noise data and mutiplying the dataset by 50x per crop.
 
