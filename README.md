@@ -6,7 +6,7 @@ A POC (Proof of Concept) project that utilizes Machine Learning and Data Science
 
 **This project is a proof of concept only**. The data offered in this context comes without assurances from its author. It is not advised to base farming decisions on it. The author will not be held accountable for consequences arising from its use. Still, this project showcases how Machine Learning and Data Science can effectively apply to precision farming when grounded in comprehensive and validated data.
 
-# Procedure 📖📖
+# Procedure 📖
 
 - Check [Process.png](Process.png) for overview.
 - The original dataset is from [Kaggle](https://www.kaggle.com/code/atharvaingle/what-crop-to-grow/input). This dataset only consists of 100 entries per crop.
